@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8"/></head>
+<body>
+	
+	    <section class="layout-content" layout:fragment="corpo">
+	
+	        <nav class="navbar navbar-expand-md bg-light">
+	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	                <ul class="navbar-nav mr-auto">
+	                    <li class="nav-item active">
+	                        <i class="oi oi-caret-right"></i>
+	                        <span>Cadastrar Filmes</span>
+	                    </li>
+	                </ul>
+	                <a class="btn btn-primary btn-md" href="/filmes/listar" role="button">
+	                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
+	                    <span>Listar Filmes</span>
+	                </a>
+	            </div>
+	        </nav>
+	
+	        <div class="container" id="cadastro">
+	        
+	        	<div th:replace="fragments/alert"></div>
+	        	
+				<form th:action="${filme.id == null} ? @{/filmes/salvar} : @{/filmes/editar}" 
+				      th:object="${filme}" method="POST">
+				    <div class="form-row">
+				        <div class="form-group col-md-12">
+				            <label for="titulo">Filme</label>
+				            <input type="text" class="form-control" id="titulo"
+				                   placeholder="Titulo do filme" autofocus="autofocus" th:field="*{titulo}"/>
+				        </div>
+				        <div class="form-group col-md-12">
+				            <label for="sinopse">Sinopse</label>
+				            <textarea class="form-control" id="sinopse" rows="3" autofocus="autofocus" th:field="*{sinopse}"></textarea>
+				        </div>
+				        <div class="form-group col-md-12">
+				            <label for="anoLancamento">Ano de Lançamento</label>
+				            <input type="text" class="form-control" id="anoLancamento"
+				                   placeholder="" autofocus="autofocus" th:field="*{anoLancamento}"/>
+				        </div>
+				        <div class="form-group col-md-12">
+				            <label for="produtores">Produtores</label>
+				            <input type="text" class="form-control" id="produtores"
+				                   placeholder="" autofocus="autofocus" th:field="*{produtores}"/>
+				        </div>
+				        <div class="form-group col-md-12">
+				            <label for="protagonistas">Protagonistas</label>
+				            <input type="text" class="form-control" id="protagonistas"
+				                   placeholder="" autofocus="autofocus" th:field="*{protagonistas}"/>
+				        </div>
+				    </div>
+
+				    <input type="hidden" id="id" th:field="*{id}"/>
+				    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+				</form>
+	        </div>
+	    </section>
+</body>
+</html>
